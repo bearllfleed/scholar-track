@@ -1,0 +1,26 @@
+Name: scholartrack-api
+Host: 0.0.0.0
+Port: 8888
+System:
+  Etcd:
+    Hosts:
+    - 127.0.0.1:2379
+    Key: system.rpc
+Achieve:
+  Etcd:
+    Hosts:
+    - 127.0.0.1:2379
+    Key: achieve.rpc
+Storage:
+  Etcd:
+    Hosts:
+    - 127.0.0.1:2379
+    Key: storage.rpc
+JwtConf:
+  SecretKey: "api"
+  Expire: 24h # 过期时间
+  Buffer: 10m # 缓冲时间
+  Issuer: api # 签发者
+  Audience: api # 受众
+RestConf:
+  MaxBytes: 52428800  # 50MB

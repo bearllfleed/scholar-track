@@ -1,0 +1,10 @@
+Name: achieve.rpc
+ListenOn: 0.0.0.0:8082
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: achieve.rpc
+DataSource: root:292378@tcp(127.0.0.1:3306)/scholar_track?charset=utf8mb4&parseTime=True&loc=Asia%2FShanghai
+Cache:
+  - Host: localhost:6379
+WorkerID: 2

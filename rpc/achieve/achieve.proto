@@ -1,0 +1,240 @@
+syntax = "proto3";
+package achieve;
+import "google/protobuf/struct.proto";
+
+option go_package = "./achieve";
+
+message Category {
+  uint64 id = 1;
+  string name = 2;
+  string type = 3;
+  string description = 4;
+  int32 status = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+  int64 deleted_at = 8;
+}
+
+// 创建成就分类
+message CreateCategoryReq {
+  string name = 1;
+  string type = 2;
+  string description = 3;
+  int32 status = 4;
+}
+
+message CreateCategoryResp {
+  uint64 id = 1;
+  string name = 2;
+  string type = 3;
+  string description = 4;
+  int32 status = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+  int64 deleted_at = 8;
+}
+
+// 查询成就分类
+message QueryCategoryDetailReq { uint64 id = 1; }
+
+message QueryCategoryResp {
+  uint64 id = 1;
+  string name = 2;
+  string type = 3;
+  string description = 4;
+  int32 status = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+  int64 deleted_at = 8;
+}
+// 查询成就分类列表
+message QueryCategoryListReq {
+  int64 page = 1;
+  int64 page_size = 2;
+  string name = 3;
+  string type = 4;
+  int32 status = 5;
+  string order_by = 6;
+}
+
+message QueryCategoryListResp {
+  int64 total = 1;
+  int64 page = 2;
+  int64 page_size = 3;
+  repeated Category categories = 4;
+}
+// 删除成就分类
+message DeleteCategoryReq { uint64 id = 1; }
+
+message DeleteCategoryResp {}
+// 更新成就分类
+message UpdateCategoryReq {
+  uint64 id = 1;
+  string name = 2;
+  string type = 3;
+  string description = 4;
+  int32 status = 5;
+}
+
+message UpdateCategoryResp {
+  uint64 id = 1;
+  string name = 2;
+  string type = 3;
+  string description = 4;
+  int32 status = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+  int64 deleted_at = 8;
+}
+
+message Property {
+  uint64 id = 1;
+  string key = 10;
+  string name = 2;
+  string description = 3;
+  int32 status = 4;
+  string type = 5;
+  bool is_search = 6;
+  bool is_required = 7;
+  string validate_rule = 8;
+  uint64 category_id = 9;
+}
+// 创建成就属性
+message CreatePropertyReq {
+  string key = 9;
+  string name = 1;
+  string description = 2;
+  int32 status = 3;
+  string type = 4;
+  bool is_search = 5;
+  bool is_required = 6;
+  string validate_rule = 7;
+  uint64 category_id = 8;
+}
+
+message CreatePropertyResp {
+  string key = 10;
+  uint64 id = 1;
+  string name = 2;
+  string description = 3;
+  int32 status = 4;
+  string type = 5;
+  bool is_search = 6;
+  bool is_required = 7;
+  string validate_rule = 8;
+  uint64 category_id = 9;
+}
+
+// 查询成就属性
+message QueryPropertyDetailReq { uint64 id = 1; }
+
+message QueryPropertyDetailResp {
+  string key = 13;
+  uint64 id = 1;
+  string name = 2;
+  string description = 3;
+  int32 status = 4;
+  string type = 5;
+  bool is_search = 6;
+  bool is_required = 7;
+  string validate_rule = 8;
+  uint64 category_id = 9;
+  int64 created_at = 10;
+  int64 updated_at = 11;
+  int64 deleted_at = 12;
+}
+
+// 查询成就属性列表
+message QueryPropertyListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  string name = 3;
+  string type = 4;
+  int32 status = 5;
+  string order_by = 6;
+}
+
+message QueryPropertyListResp {
+  uint64 total = 1;
+  uint64 page = 2;
+  uint64 page_size = 3;
+  repeated Property properties = 4;
+}
+
+// 删除成就属性
+message DeletePropertyReq { uint64 id = 1; }
+
+message DeletePropertyResp {}
+
+// 更新成就属性
+message UpdatePropertyReq {
+  uint64 id = 1;
+  string key = 10;
+  string name = 2;
+  string description = 3;
+  int32 status = 4;
+  string type = 5;
+  bool is_search = 6;
+  bool is_required = 7;
+  string validate_rule = 8;
+  uint64 category_id = 9;
+}
+
+message UpdatePropertyResp {
+  uint64 id = 1;
+  string key = 13;
+  string name = 2;
+  string description = 3;
+  int32 status = 4;
+  string type = 5;
+  bool is_search = 6;
+  bool is_required = 7;
+  string validate_rule = 8;
+  uint64 category_id = 9;
+  int64 created_at = 10;
+  int64 updated_at = 11;
+  int64 deleted_at = 12;
+}
+
+service CategoryService {
+  rpc CreateCategory(CreateCategoryReq) returns (CreateCategoryResp);
+  rpc QueryCategoryDetail(QueryCategoryDetailReq) returns (QueryCategoryResp);
+  rpc QueryCategoryList(QueryCategoryListReq) returns (QueryCategoryListResp);
+  rpc DeleteCategory(DeleteCategoryReq) returns (DeleteCategoryResp);
+  rpc UpdateCategory(UpdateCategoryReq) returns (UpdateCategoryResp);
+}
+
+service PropertyService {
+  rpc CreateProperty(CreatePropertyReq) returns (CreatePropertyResp);
+  rpc QueryPropertyDetail(QueryPropertyDetailReq)
+      returns (QueryPropertyDetailResp);
+  rpc QueryPropertyList(QueryPropertyListReq) returns (QueryPropertyListResp);
+  rpc DeleteProperty(DeletePropertyReq) returns (DeletePropertyResp);
+  rpc UpdateProperty(UpdatePropertyReq) returns (UpdatePropertyResp);
+}
+
+message UploadAchieveReq {
+  string code = 1;
+  string name = 2;
+  int32 status = 3;
+  int32 level = 4;
+  int32 rank = 5;
+  int64 award_time = 6;
+  bool share = 7;
+  uint64 star = 8;
+  uint64 uploader = 9;
+  bool team = 10;
+  repeated uint64 team_members = 11;
+  string description = 12;
+  uint64 category_id = 13;
+  google.protobuf.Struct other_info = 14;
+}
+message UploadAchieveResp { uint64 id = 1; }
+
+message DeleteAchieveReq { uint64 id = 1; }
+
+message DeleteAchieveResp {}
+service AchieveService {
+  rpc UploadAchieve(UploadAchieveReq) returns (UploadAchieveResp);
+  rpc DeleteAchieve(DeleteAchieveReq) returns (DeleteAchieveResp);
+}

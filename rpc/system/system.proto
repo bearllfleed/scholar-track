@@ -1,0 +1,614 @@
+syntax = "proto3";
+
+package system;
+option go_package="./system";
+
+message Rule {
+  repeated string rules = 1;
+}
+
+message AddPolicyReq {
+  repeated Rule rules = 1;
+}
+message AddPolicyResp {
+}
+
+message EnforceReq {
+  string role = 1;
+  string path = 2;
+  string method = 3;
+}
+message EnforceResp {
+  bool result = 1;
+}
+
+service Casbin {
+  rpc AddPolicy(AddPolicyReq) returns (AddPolicyResp);
+  rpc Enforce(EnforceReq) returns (EnforceResp);
+}
+
+message RoleResp {
+  uint64 id = 1;
+  string role_name = 2;
+  uint64 parent_id = 3;
+  int64 created_at = 4;
+  int64 updated_at = 5;
+}
+
+// 添加角色
+message AddRoleReq {
+  string role_name = 1;
+  uint64 parent_id = 2;
+}
+
+message AddRoleResp {
+  RoleResp role = 1;
+}
+
+// 删除角色
+message DeleteRoleReq {
+  uint64 id = 1;
+}
+
+message DeleteRoleResp {
+  bool success = 1;
+}
+// 更新角色
+message UpdateRoleReq {
+  uint64 id = 1;
+  string role_name = 2;
+}
+
+message UpdateRoleResp {
+  uint64 id = 1;
+  string role_name = 2;
+  uint64 parent_id = 3;
+}
+// 角色树 分页查看角色树
+message RoleTreeReq {
+  string role_name = 1;
+  int64 page = 2;
+  int64 page_size = 3;
+}
+message RoleTreeResp {
+  RoleResp role = 1;
+  repeated RoleTreeResp children = 2;
+}
+
+message RoleTreeListResp {
+  repeated RoleTreeResp roles = 1;
+  int64 total = 2;
+  int64 page = 3;
+  int64 page_size = 4;
+}
+
+message PolicyInfo {
+  string method = 1;
+  string path = 2;
+}
+// 更新角色权限
+message SetRolePoliciesReq {
+  uint64 role_id = 1;
+  repeated PolicyInfo rules = 2;
+}
+message SetRolePoliciesResp {}
+
+// 获取角色权限
+message QueryRolePoliciesReq {
+  uint64 role_id = 1;
+}
+message QueryRolePoliciesResp {
+  repeated PolicyInfo rules = 1;
+}
+
+// 角色服务
+service Role {
+  rpc AddRole(AddRoleReq) returns(AddRoleResp);
+  rpc DeleteRole(DeleteRoleReq) returns(DeleteRoleResp);
+  rpc UpdateRole(UpdateRoleReq) returns(UpdateRoleResp);
+  rpc RoleTree(RoleTreeReq) returns(RoleTreeListResp);
+  rpc SetRolePolicies(SetRolePoliciesReq) returns(SetRolePoliciesResp);
+  rpc QueryRolePolicies(QueryRolePoliciesReq) returns(QueryRolePoliciesResp);
+}
+
+// 查看用户信息
+message QueryUserDetailReq {
+  uint64 id = 1;
+}
+message QueryUserDetailResp {
+  uint64 id = 1;               // 用户ID
+  int64 created_at = 2;        // 创建时间
+  int64 updated_at = 3;        // 更新时间
+  int64 deleted_at = 4;        // 删除时间
+  string username = 5;         // 用户名
+  string email = 6;            // 电子邮件
+  string avatar = 7;           // 头像URL
+  uint64  role_id = 8;             // 角色ID
+  int32 status = 9;           // 用户状态
+  string nickname = 10;        // 昵称
+  string phone = 11;           // 电话号码
+  int32  gender = 12;          // 性别
+  string major = 13;           // 专业
+  string college = 14;         // 学院
+  string grade = 15;           // 年级
+  string class = 16;           // 班级
+  string realname = 17;         // 姓名
+  string password = 18;
+}
+
+// 查看用户列表
+message QueryUserListReq {
+  int64 page = 1;
+  int64 page_size = 2;
+  // 可能会按照姓名、学号、班级、学院、专业、年级、性别、角色、状态进行搜索
+  uint64 role_id = 3;
+  int32 gender = 4;
+  int32 status = 5;
+  string order_by = 6;
+  string major = 7;
+  string college = 8;
+  string grade = 9;
+  string class = 10;
+  string realname = 11;
+  string username = 12;
+  string email = 13;
+  string phone = 14;
+  string nickname = 15;
+}
+message QueryUserListResp {
+  repeated QueryUserDetailResp users = 1;
+  int64 total = 2;
+  int64 page = 3;
+  int64 page_size = 4;
+}
+
+// 登录
+message FindUserByUsernameReq {
+  string username = 1;        // 用户名
+}
+message FindUserByUsernameResp {
+  uint64  id = 1;               // 用户ID
+  string username = 2;         // 用户名
+  string password = 3;         // 密码
+  uint64 role_id = 4;          // 角色ID
+}
+
+
+// 注册
+message RegisterReq {
+  string username = 1;
+  string password = 2;
+  string email = 3;
+  string phone = 4;
+  string nickname = 5;
+  uint64 role_id = 6;
+  int32 gender = 7;
+  string major = 8;
+  string grade = 9;
+  string college = 10;
+  string realname = 11;
+  string class = 12;
+}
+message RegisterResp {
+  QueryUserDetailResp user = 1;
+}
+
+// 设置用户信息
+message SetUserInfoReq {
+  uint64 id = 1;
+  string username = 2;
+  string email = 3;
+  string phone = 4;
+  string nickname = 5;
+  uint64 role_id = 6;
+  int32 gender = 7;
+  string major = 8;
+  string grade = 9;
+  string college = 10;
+  string realname = 11;
+  string class = 12;
+  string avatar = 13;
+  int32 status = 14;
+}
+message SetUserInfoResp {}
+
+// 设置自身信息
+message SetSelfInfoReq {
+  string username = 1;
+  string email = 2;
+  string phone = 3;
+  string nickname = 4;
+  int32 gender = 5;
+  string major = 6;
+  string grade = 7;
+  string college = 8;
+  string realname = 9;
+  string class = 10;
+  string avatar = 11;
+  uint64 role_id = 12;
+  uint64 id = 13;
+}
+message SetSelfInfoResp {}
+
+// 查看自身信息
+message QuerySelfInfoReq {
+  uint64 id = 1;
+}
+message QuerySelfInfoResp {
+  QueryUserDetailResp user = 1;
+}
+
+// 设置用户角色
+message SetUserRoleReq {
+  uint64 user_id = 1;
+  repeated uint64 role_ids = 2;
+}
+message SetUserRoleResp {}
+
+// 重置用户密码
+message ResetPasswordReq {
+  uint64 user_id = 1;
+  string password = 2;
+}
+message ResetPasswordResp {}
+
+// 修改密码
+message ChangePasswordReq {
+  uint64 user_id = 1;
+  string new_password = 2;
+}
+message ChangePasswordResp {}
+
+// 删除用户
+message DeleteUserReq {
+  uint64 user_id = 1;
+}
+message DeleteUserResp {}
+
+
+
+service User {
+  rpc QueryUserDetail(QueryUserDetailReq) returns(QueryUserDetailResp);
+  rpc QueryUserList(QueryUserListReq) returns(QueryUserListResp);
+  rpc FindUserByUsername(FindUserByUsernameReq) returns(FindUserByUsernameResp);
+  rpc Register(RegisterReq) returns(RegisterResp);
+  rpc SetUserInfo(SetUserInfoReq) returns(SetUserInfoResp);
+  rpc SetSelfInfo(SetSelfInfoReq) returns(SetSelfInfoResp);
+  rpc QuerySelfInfo(QuerySelfInfoReq) returns(QuerySelfInfoResp);
+  rpc SetUserRole(SetUserRoleReq) returns(SetUserRoleResp);
+  rpc ResetPassword(ResetPasswordReq) returns(ResetPasswordResp);
+  rpc ChangePassword(ChangePasswordReq) returns(ChangePasswordResp);
+  rpc DeleteUser(DeleteUserReq) returns(DeleteUserResp);
+}
+
+
+message Api {
+  uint64 id = 1;
+  string path = 2;
+  string method = 3;
+  string api_group = 4;
+  string description = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+  int64 deleted_at = 8;
+}
+
+message CreateApiReq {
+  string path = 1;
+  string method = 2;
+  string api_group = 3;
+  string description = 4;
+}
+
+message CreateApiResp {
+  uint64 id = 1;
+  string path = 2;
+  string method = 3;
+  string api_group = 4;
+  string description = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+  int64 deleted_at = 8;
+}
+
+message QueryAllApiReq {
+}
+
+message QueryAllApiResp {
+  repeated Api apis = 1;
+} 
+
+message DeleteApiReq {
+  uint64 id = 1;
+}
+
+message DeleteApiResp {
+}   
+
+message UpdateApiReq {
+  uint64 id = 1;
+  string path = 2;
+  string method = 3;
+  string api_group = 4;
+  string description = 5;
+}  
+
+message UpdateApiResp {
+  uint64 id = 1;
+  string path = 2;
+  string method = 3;
+  string api_group = 4;
+  string description = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+  int64 deleted_at = 8;
+}
+
+message QueryApiDetailReq {
+  uint64 id = 1;
+}
+
+message QueryApiDetailResp {
+  uint64 id = 1;
+  string path = 2;
+  string method = 3;
+  string api_group = 4;
+  string description = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+  int64 deleted_at = 8;
+}
+
+service ApiService {
+  rpc CreateApi(CreateApiReq) returns (CreateApiResp);
+  rpc QueryAllApi(QueryAllApiReq) returns (QueryAllApiResp);
+  rpc DeleteApi(DeleteApiReq) returns (DeleteApiResp);
+  rpc UpdateApi(UpdateApiReq) returns (UpdateApiResp);
+  rpc QueryApiDetail(QueryApiDetailReq) returns (QueryApiDetailResp);
+}
+
+message Menu {
+  uint64 id = 1;
+  int64 created_at = 2;
+  int64 updated_at = 3;
+  int64 deleted_at = 4;
+  uint64 menu_level = 5;
+  uint64 parent_id = 6;
+  string path = 7;
+  string name = 8;
+  bool hidden = 9;
+  string component = 10;
+  int32 sort = 11;
+  Meta meta = 12;
+  repeated Menu children = 13;
+}
+
+message Meta {
+  string active_name = 1;
+  bool keep_alive = 2;
+  string title = 3;
+  string icon = 4;
+  bool close_tab = 5;
+}
+
+message CreateMenuReq {
+  uint64 parent_id = 1;
+  string path = 2;
+  string name = 3;
+  bool hidden = 4;
+  string component = 5;
+  int32 sort = 6;
+  Meta meta = 7;
+}
+
+message CreateMenuResp {
+  Menu menu = 1;
+}
+
+message QueryAllMenuTreeReq {
+}
+
+message QueryAllMenuTreeResp {
+  repeated Menu menus = 1;
+}
+
+message QueryRoleMenuTreeReq {
+  uint64 role_id = 1;
+}
+
+message QueryRoleMenuTreeResp {
+  repeated Menu menus = 1;
+}
+
+message UpdateRoleMenuReq {
+  uint64 role_id = 1;
+  repeated uint64 menu_ids = 2;
+}
+
+message UpdateRoleMenuResp {}
+
+message DeleteMenuReq {
+  uint64 id = 1;
+}
+
+message DeleteMenuResp {}
+
+message QueryMenuDetailReq {
+  uint64 id = 1;
+}
+
+message QueryMenuDetailResp {
+  Menu menu = 1;
+}
+
+message UpdateMenuReq {
+  uint64 id = 1;
+  uint64 parent_id = 2;
+  string path = 3;
+  string name = 4;
+  bool hidden = 5;
+  string component = 6;
+  int32 sort = 7;
+  Meta meta = 8;
+}
+
+message UpdateMenuResp {
+  Menu menu = 1;
+}
+
+service MenuService {
+  rpc CreateMenu(CreateMenuReq) returns (CreateMenuResp);
+  rpc QueryAllMenuTree(QueryAllMenuTreeReq) returns (QueryAllMenuTreeResp);
+  rpc QueryRoleMenuTree(QueryRoleMenuTreeReq) returns (QueryRoleMenuTreeResp);
+  rpc UpdateRoleMenu(UpdateRoleMenuReq) returns (UpdateRoleMenuResp);
+  rpc DeleteMenu(DeleteMenuReq) returns (DeleteMenuResp);
+  rpc QueryMenuDetail(QueryMenuDetailReq) returns (QueryMenuDetailResp);
+  rpc UpdateMenu(UpdateMenuReq) returns (UpdateMenuResp);
+}
+
+message Dictionary {
+  uint64 id = 1;
+  string name = 2;
+  string type = 3;
+  bool status = 4;
+  string desc = 5;
+  repeated DictionaryDetail dictionary_details = 6;
+  int64 created_at = 7;
+  int64 updated_at = 8;
+  int64 deleted_at = 9;
+}
+
+message DictionaryDetail {
+  uint64 id = 1;
+  string label = 2;
+  string value = 3;
+  string extend = 4;
+  bool status = 5;
+  int32 sort = 6;
+  uint64 dictionary_id = 7;
+  int64 created_at = 8;
+  int64 updated_at = 9;
+  int64 deleted_at = 10;
+}
+
+message CreateDictionaryReq {
+  string name = 1;
+  string type = 2;
+  bool status = 3;
+  string desc = 4;
+}
+
+message CreateDictionaryResp {
+  Dictionary dictionary = 1;
+}
+
+message QueryDictionaryDetailReq {
+  uint64 id = 1;
+}
+
+message QueryDictionaryDetailResp {
+  Dictionary dictionary = 1;
+}
+
+message QueryAllDictionaryReq {
+}
+
+message QueryAllDictionaryResp {
+  repeated Dictionary dictionaries = 1;
+}
+
+message UpdateDictionaryReq {
+  uint64 id = 1;
+  string name = 2;
+  string type = 3;
+  bool status = 4;
+  string desc = 5;
+}
+
+message UpdateDictionaryResp {
+  Dictionary dictionary = 1;
+}
+
+message DeleteDictionaryReq {
+  uint64 id = 1;
+}
+
+message DeleteDictionaryResp {
+}
+
+message CreateDictionaryDetailReq {
+  string label = 1;
+  string value = 2;
+  string extend = 3;
+  bool status = 4;
+  int32 sort = 5;
+  uint64 dictionary_id = 6;
+}
+
+message CreateDictionaryDetailResp {
+  DictionaryDetail dictionary_detail = 1;
+}
+
+message DeleteDictionaryDetailReq {
+  uint64 id = 1;
+}
+
+message DeleteDictionaryDetailResp {
+}
+
+service DictionaryService {
+  rpc CreateDictionary(CreateDictionaryReq) returns (CreateDictionaryResp);
+  rpc QueryDictionaryDetail(QueryDictionaryDetailReq) returns (QueryDictionaryDetailResp);
+  rpc QueryAllDictionary(QueryAllDictionaryReq) returns (QueryAllDictionaryResp);
+  rpc UpdateDictionary(UpdateDictionaryReq) returns (UpdateDictionaryResp);
+  rpc DeleteDictionary(DeleteDictionaryReq) returns (DeleteDictionaryResp);
+  rpc CreateDictionaryDetail(CreateDictionaryDetailReq) returns (CreateDictionaryDetailResp);
+  rpc QueryDictionaryDetailDetail(QueryDictionaryDetailDetailReq) returns (QueryDictionaryDetailDetailResp);
+  rpc QueryAllDictionaryDetail(QueryAllDictionaryDetailReq) returns (QueryAllDictionaryDetailResp);
+  rpc UpdateDictionaryDetail(UpdateDictionaryDetailReq) returns (UpdateDictionaryDetailResp);
+  rpc DeleteDictionaryDetail(DeleteDictionaryDetailReq) returns (DeleteDictionaryDetailResp);
+  rpc QueryDictionaryList(QueryDictionaryListReq) returns (QueryDictionaryListResp);
+}
+
+message QueryDictionaryListReq {
+  int64 page = 1;
+  int64 page_size = 2;
+  string name = 3;
+  string type = 4;
+}
+
+message QueryDictionaryListResp {
+  repeated Dictionary dictionaries = 1;
+  int64 total = 2;
+  int64 page = 3;
+  int64 page_size = 4;
+}
+
+message QueryAllDictionaryDetailReq {
+}
+
+message QueryAllDictionaryDetailResp {
+  repeated DictionaryDetail dictionary_details = 1;
+}
+
+message QueryDictionaryDetailDetailReq {
+  uint64 id = 1;
+}
+
+message QueryDictionaryDetailDetailResp {
+  DictionaryDetail dictionary_detail = 1;
+}
+
+message UpdateDictionaryDetailReq {
+  uint64 id = 1;
+  string label = 2;
+  string value = 3;
+  string extend = 4;
+  bool status = 5;
+  int32 sort = 6;
+  uint64 dictionary_id = 7;
+}
+
+message UpdateDictionaryDetailResp {
+  DictionaryDetail dictionary_detail = 1;
+}

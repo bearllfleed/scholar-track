@@ -1,0 +1,1081 @@
+syntax = "v1"
+
+info (
+	title:   "scholartrack-api"
+	desc:    "scholartrack-api"
+	author:  "bearllflee"
+	email:   "292378727@qq.com"
+	version: "1.0"
+)
+
+// User
+type (
+	// 用户详情
+	QueryUserDetailReq {
+		Id uint64 `path:"id"`
+	}
+	QueryUserDetailResp {
+		Id        uint64 `json:"id"`
+		CreatedAt int64  `json:"createdAt"`
+		UpdatedAt int64  `json:"updatedAt"`
+		DeletedAt int64  `json:"-"`
+		Username  string `json:"username"`
+		Email     string `json:"email"`
+		Phone     string `json:"phone"`
+		Avatar    string `json:"avatar"`
+		RoleId    uint64 `json:"roleId"`
+		Status    int32  `json:"status"`
+		Nickname  string `json:"nickname"`
+		Gender    int32  `json:"gender"`
+		Major     string `json:"major"`
+		Grade     string `json:"grade"`
+		College   string `json:"college"`
+		Realname  string `json:"realname"`
+		Class     string `json:"class"`
+		Password  string `json:"-"`
+	}
+	// 用户列表
+	QueryUserListReq {
+		Page     int64  `json:"page"`
+		PageSize int64  `json:"pageSize"`
+		Username string `json:"username,optional"`
+		Email    string `json:"email,optional"`
+		Phone    string `json:"phone,optional"`
+		Nickname string `json:"nickname,optional"`
+		RoleId   uint64 `json:"roleId,optional"`
+		Status   int32  `json:"status,optional"`
+		Major    string `json:"major,optional"`
+		Grade    string `json:"grade,optional"`
+		College  string `json:"college,optional"`
+		Realname string `json:"realname,optional"`
+		Class    string `json:"class,optional"`
+		Gender   int32  `json:"gender,optional"`
+		OrderBy  string `json:"orderBy,optional"`
+	}
+	QueryUserListResp {
+		Total    int64                  `json:"total"`
+		List     []*QueryUserDetailResp `json:"list"`
+		Page     int64                  `json:"page"`
+		PageSize int64                  `json:"pageSize"`
+	}
+	// 登录
+	LoginReq {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
+	LoginResp {
+		Token string `json:"token"`
+	}
+	// 注册
+	RegisterReq {
+		Username string `json:"username"`
+		Password string `json:"password"`
+		Email    string `json:"email,optional"`
+		Phone    string `json:"phone,optional"`
+		Nickname string `json:"nickname,optional"`
+		RoleId   uint64 `json:"roleId"`
+		Gender   int32  `json:"gender"`
+		Major    string `json:"major"`
+		Grade    string `json:"grade"`
+		College  string `json:"college"`
+		Realname string `json:"realname"`
+		Class    string `json:"class"`
+	}
+	RegisterResp {
+		User *QueryUserDetailResp `json:"user"`
+	}
+	// 设置用户角色
+	SetUserRoleReq {
+		UserId  uint64   `json:"userId"`
+		RoleIds []uint64 `json:"roleIds"`
+	}
+	SetUserRoleResp {
+		Id uint64 `json:"id"`
+	}
+	// 查看自身信息
+	QuerySelfInfoReq {
+		Id uint64 `json:"id,optional"`
+	}
+	QuerySelfInfoResp {
+		User QueryUserDetailResp `json:"user"`
+	}
+	// 修改用户信息
+	SetUserInfoReq {
+		Id       uint64 `json:"id"`
+		Username string `json:"username"`
+		Email    string `json:"email"`
+		Phone    string `json:"phone"`
+		Avatar   string `json:"avatar"`
+		RoleId   uint64 `json:"roleId"`
+		Status   int32  `json:"status"`
+		Nickname string `json:"nickname"`
+		Gender   int32  `json:"gender"`
+		Major    string `json:"major"`
+		Grade    string `json:"grade"`
+		College  string `json:"college"`
+		Realname string `json:"realname"`
+		Class    string `json:"class"`
+	}
+	SetUserInfoResp {
+		Id uint64 `json:"id"`
+	}
+	// 修改自身信息
+	SetSelfInfoReq {
+		Id       uint64 `json:"id,optional"`
+		Username string `json:"username"`
+		Email    string `json:"email"`
+		Phone    string `json:"phone"`
+		Avatar   string `json:"avatar"`
+		RoleId   uint64 `json:"roleId"`
+		Status   int32  `json:"status"`
+		Nickname string `json:"nickname"`
+		Gender   int32  `json:"gender"`
+		Major    string `json:"major"`
+		Grade    string `json:"grade"`
+		College  string `json:"college"`
+		Realname string `json:"realname"`
+		Class    string `json:"class"`
+	}
+	SetSelfInfoResp {
+		Id uint64 `json:"id"`
+	}
+	// 重置用户密码
+	ResetPasswordReq {
+		UserId uint64 `json:"userId"`
+	}
+	ResetPasswordResp {
+		Id uint64 `json:"id"`
+	}
+	// 修改密码
+	ChangePasswordReq {
+		UserId      uint64 `json:"userId,optional"`
+		OldPassword string `json:"oldPassword"`
+		NewPassword string `json:"newPassword"`
+	}
+	ChangePasswordResp {
+		Id uint64 `json:"id"`
+	}
+	// 删除用户
+	DeleteUserReq {
+		UserId uint64 `path:"id"`
+	}
+	DeleteUserResp {
+		Id uint64 `json:"id"`
+	}
+)
+
+// 角色
+type (
+	// 角色树
+	RoleTree {
+		RoleName  string      `json:"roleName"`
+		ParentId  uint64      `json:"parentId"`
+		CreatedAt int64       `json:"createdAt"`
+		UpdatedAt int64       `json:"updatedAt"`
+		Id        uint64      `json:"id"`
+		Children  []*RoleTree `json:"children"`
+	}
+	RoleTreeReq {
+		Page     int64 `json:"page"`
+		PageSize int64 `json:"pageSize"`
+	}
+	RoleTreeResp {
+		Roles    []*RoleTree `json:"roles"`
+		Total    int64       `json:"total"`
+		Page     int64       `json:"page"`
+		PageSize int64       `json:"pageSize"`
+	}
+	// 添加角色
+	AddRoleReq {
+		RoleName string `json:"roleName"`
+		ParentId uint64 `json:"parentId"`
+	}
+	AddRoleResp {
+		RoleName  string `json:"roleName"`
+		ParentId  uint64 `json:"parentId"`
+		CreatedAt int64  `json:"createdAt"`
+		UpdatedAt int64  `json:"updatedAt"`
+		Id        uint64 `json:"id"`
+	}
+	// 删除角色
+	DeleteRoleReq {
+		RoleId uint64 `path:"id"`
+	}
+	DeleteRoleResp {
+		Id uint64 `json:"id"`
+	}
+	// 设置角色信息
+	SetRoleInfoReq {
+		RoleId   uint64 `json:"roleId"`
+		RoleName string `json:"roleName"`
+	}
+	SetRoleInfoResp {
+		Id uint64 `json:"id"`
+	}
+	// 设置角色权限
+	PolicyInfo {
+		Method string `json:"method"`
+		Path   string `json:"path"`
+	}
+	SetRolePoliciesReq {
+		RoleId uint64       `json:"roleId"`
+		Rules  []PolicyInfo `json:"rules"`
+	}
+	SetRolePoliciesResp {
+		Id uint64 `json:"id"`
+	}
+	// 获取角色权限
+	QueryRolePoliciesReq {
+		RoleId uint64 `path:"roleId"`
+	}
+	QueryRolePoliciesResp {
+		Rules []*PolicyInfo `json:"rules"`
+	}
+)
+
+type (
+	AddPolicyReq {
+		Rules [][]string `json:"rules"`
+	}
+)
+
+@server (
+	group: user
+)
+service scholartrack-api {
+	@handler QueryUserDetailHandler
+	get /user/:id (QueryUserDetailReq) returns (QueryUserDetailResp)
+
+	@handler QueryUserListHandler
+	post /user/list (QueryUserListReq) returns (QueryUserListResp)
+
+	@handler LoginHandler
+	post /user/login (LoginReq) returns (LoginResp)
+
+	@handler RegisterHandler
+	post /user/register (RegisterReq) returns (RegisterResp)
+
+	@handler SetUserRoleHandler
+	post /user/setUserRole (SetUserRoleReq) returns (SetUserRoleResp)
+
+	@handler SetUserInfoHandler
+	post /user/setUserInfo (SetUserInfoReq) returns (SetUserInfoResp)
+
+	@handler SetSelfInfoHandler
+	post /user/setSelfInfo (SetSelfInfoReq) returns (SetSelfInfoResp)
+
+	@handler ResetPasswordHandler
+	post /user/resetPassword (ResetPasswordReq) returns (ResetPasswordResp)
+
+	@handler ChangePasswordHandler
+	post /user/changePassword (ChangePasswordReq) returns (ChangePasswordResp)
+
+	@handler QuerySelfInfoHandler
+	get /user/selfInfo (QuerySelfInfoReq) returns (QuerySelfInfoResp)
+
+	@handler DeleteUserHandler
+	delete /user/:id (DeleteUserReq) returns (DeleteUserResp)
+}
+
+@server (
+	group: role
+)
+service scholartrack-api {
+	@handler RoleTreeHandler
+	post /role/tree (RoleTreeReq) returns (RoleTreeResp)
+
+	@handler AddRoleHandler
+	post /role/add (AddRoleReq) returns (AddRoleResp)
+
+	@handler DeleteRoleHandler
+	delete /role/:id (DeleteRoleReq) returns (DeleteRoleResp)
+
+	@handler SetRoleInfoHandler
+	post /role/setRoleInfo (SetRoleInfoReq) returns (SetRoleInfoResp)
+
+	@handler SetRolePoliciesHandler
+	post /role/setRolePolicies (SetRolePoliciesReq) returns (SetRolePoliciesResp)
+
+	@handler QueryRolePoliciesHandler
+	get /role/queryRolePolicies/:roleId (QueryRolePoliciesReq) returns (QueryRolePoliciesResp)
+}
+
+@server (
+	group: casbin
+)
+service scholartrack-api {
+	@handler AddPoliciesHandler
+	post /casbin/addPolicies (AddPolicyReq)
+}
+
+type Api {
+	Id          uint64 `json:"id"`
+	Path        string `json:"path"`
+	Method      string `json:"method"`
+	ApiGroup    string `json:"apiGroup"`
+	Description string `json:"description"`
+	CreatedAt   int64  `json:"createdAt"`
+	UpdatedAt   int64  `json:"updatedAt"`
+	DeletedAt   int64  `json:"-"`
+}
+
+// 添加api
+type CreateApiReq {
+	Path        string `json:"path"`
+	Method      string `json:"method"`
+	ApiGroup    string `json:"apiGroup"`
+	Description string `json:"description"`
+}
+
+type CreateApiResp {
+	Id          uint64 `json:"id"`
+	Path        string `json:"path"`
+	Method      string `json:"method"`
+	ApiGroup    string `json:"apiGroup"`
+	Description string `json:"description"`
+	CreatedAt   int64  `json:"createdAt"`
+	UpdatedAt   int64  `json:"updatedAt"`
+	DeletedAt   int64  `json:"-"`
+}
+
+// 查询全部API
+type QueryAllApiReq {}
+
+type QueryAllApiResp {
+	Apis []Api `json:"apis"`
+}
+
+// 删除api
+type DeleteApiReq {
+	Id uint64 `path:"id"`
+}
+
+type DeleteApiResp {}
+
+// 更新api
+type UpdateApiReq {
+	Id          uint64 `json:"id"`
+	Path        string `json:"path"`
+	Method      string `json:"method"`
+	ApiGroup    string `json:"apiGroup"`
+	Description string `json:"description"`
+}
+
+type UpdateApiResp {
+	Id          uint64 `json:"id"`
+	Path        string `json:"path"`
+	Method      string `json:"method"`
+	ApiGroup    string `json:"apiGroup"`
+	Description string `json:"description"`
+	CreatedAt   int64  `json:"createdAt"`
+	UpdatedAt   int64  `json:"updatedAt"`
+	DeletedAt   int64  `json:"-"`
+}
+
+// 查询api详情
+type QueryApiDetailReq {
+	Id uint64 `path:"id"`
+}
+
+type QueryApiDetailResp {
+	Id          uint64 `json:"id"`
+	Path        string `json:"path"`
+	Method      string `json:"method"`
+	ApiGroup    string `json:"apiGroup"`
+	Description string `json:"description"`
+	CreatedAt   int64  `json:"createdAt"`
+	UpdatedAt   int64  `json:"updatedAt"`
+	DeletedAt   int64  `json:"-"`
+}
+
+@server (
+	group: api
+)
+service scholartrack-api {
+	@handler CreateApiHandler
+	post /api (CreateApiReq) returns (CreateApiResp)
+
+	@handler QueryAllApiHandler
+	get /api (QueryAllApiReq) returns (QueryAllApiResp)
+
+	@handler DeleteApiHandler
+	delete /api/:id (DeleteApiReq) returns (DeleteApiResp)
+
+	@handler UpdateApiHandler
+	put /api (UpdateApiReq) returns (UpdateApiResp)
+
+	@handler QueryApiDetailHandler
+	get /api/:id (QueryApiDetailReq) returns (QueryApiDetailResp)
+}
+
+// 成就分类
+type Category {
+	Id          uint64     `json:"id"`
+	Name        string     `json:"name"`
+	Type        string     `json:"type"`
+	Description string     `json:"description"`
+	Status      int32      `json:"status"`
+	Properties  []Property `json:"properties"`
+	CreatedAt   int64      `json:"createdAt"`
+	UpdatedAt   int64      `json:"updatedAt"`
+	DeletedAt   int64      `json:"-"`
+}
+
+// 查询成就分类
+type QueryCategoryReq {
+	Page     int64  `json:"page"`
+	PageSize int64  `json:"pageSize"`
+	Name     string `json:"name,optional"`
+	Type     string `json:"type,optional"`
+	Status   int32  `json:"status,optional"`
+	OrderBy  string `json:"orderBy,optional"`
+}
+
+type QueryCategoryResp {
+	Total      int64       `json:"total"`
+	Categories []*Category `json:"categories"`
+	Page       int64       `json:"page"`
+	PageSize   int64       `json:"pageSize"`
+}
+
+// 添加成就分类
+type AddCategoryReq {
+	Name        string `json:"name"`
+	Type        string `json:"type"`
+	Description string `json:"description"`
+	Status      int32  `json:"status,optional"`
+}
+
+type AddCategoryResp {
+	Id          uint64 `json:"id"`
+	Name        string `json:"name"`
+	Type        string `json:"type"`
+	Description string `json:"description"`
+	Status      int32  `json:"status"`
+	CreatedAt   int64  `json:"createdAt"`
+	UpdatedAt   int64  `json:"updatedAt"`
+	DeletedAt   int64  `json:"-"`
+}
+
+// 更新成就分类
+type UpdateCategoryReq {
+	Id          uint64 `json:"id"`
+	Name        string `json:"name"`
+	Type        string `json:"type"`
+	Description string `json:"description"`
+	Status      int32  `json:"status"`
+}
+
+type UpdateCategoryResp {
+	Id          uint64 `json:"id"`
+	Name        string `json:"name"`
+	Type        string `json:"type"`
+	Description string `json:"description"`
+	Status      int32  `json:"status"`
+	CreatedAt   int64  `json:"createdAt"`
+	UpdatedAt   int64  `json:"updatedAt"`
+	DeletedAt   int64  `json:"-"`
+}
+
+// 删除成就分类
+type DeleteCategoryReq {
+	Id uint64 `path:"id"`
+}
+
+type DeleteCategoryResp {}
+
+// 查看成就详情
+type QueryCategoryDetailReq {
+	Id uint64 `path:"id"`
+}
+
+type QueryCategoryDetailResp {
+	Id          uint64     `json:"id"`
+	Name        string     `json:"name"`
+	Type        string     `json:"type"`
+	Description string     `json:"description"`
+	Status      int32      `json:"status"`
+	Properties  []Property `json:"properties"`
+	CreatedAt   int64      `json:"createdAt"`
+	UpdatedAt   int64      `json:"updatedAt"`
+	DeletedAt   int64      `json:"-"`
+}
+
+@server (
+	group: achievement/category
+)
+service scholartrack-api {
+	@handler QueryCategoryHandler
+	get /category (QueryCategoryReq) returns (QueryCategoryResp)
+
+	@handler AddCategoryHandler
+	post /category (AddCategoryReq) returns (AddCategoryResp)
+
+	@handler UpdateCategoryHandler
+	put /category (UpdateCategoryReq) returns (UpdateCategoryResp)
+
+	@handler DeleteCategoryHandler
+	delete /category/:id (DeleteCategoryReq) returns (DeleteCategoryResp)
+
+	@handler QueryCategoryDetailHandler
+	get /category/:id (QueryCategoryDetailReq) returns (QueryCategoryDetailResp)
+}
+
+// 成就属性
+type Property {
+	Id           uint64 `json:"id"`
+	Name         string `json:"name"`
+	Key          string `json:"key"`
+	Description  string `json:"description"`
+	Status       int32  `json:"status,optional"`
+	Type         string `json:"type"`
+	IsSearch     bool   `json:"isSearch"`
+	IsRequired   bool   `json:"isRequired"`
+	ValidateRule string `json:"validateRule"`
+	CategoryId   uint64 `json:"categoryId"`
+	CreatedAt    int64  `json:"createdAt"`
+	UpdatedAt    int64  `json:"updatedAt"`
+	DeletedAt    int64  `json:"-"`
+}
+
+// 查询成就属性
+type QueryPropertyReq {
+	Page       int64  `json:"page"`
+	PageSize   int64  `json:"pageSize"`
+	CategoryId uint64 `json:"categoryId"`
+	Name       string `json:"name,optional"`
+	Type       string `json:"type,optional"`
+	Status     int32  `json:"status,optional"`
+	OrderBy    string `json:"orderBy,optional"`
+}
+
+type QueryPropertyResp {
+	Total      int64      `json:"total"`
+	Properties []Property `json:"properties"`
+	Page       int64      `json:"page"`
+	PageSize   int64      `json:"pageSize"`
+}
+
+// 添加成就属性
+type AddPropertyReq {
+	Name         string `json:"name"`
+	Key          string `json:"key"`
+	Description  string `json:"description"`
+	Status       int32  `json:"status"`
+	Type         string `json:"type"`
+	IsSearch     bool   `json:"isSearch"`
+	IsRequired   bool   `json:"isRequired"`
+	ValidateRule string `json:"validateRule"`
+	CategoryId   uint64 `json:"categoryId"`
+}
+
+type AddPropertyResp {
+	Id           uint64 `json:"id"`
+	Name         string `json:"name"`
+	Key          string `json:"key"`
+	Description  string `json:"description"`
+	Status       int32  `json:"status"`
+	Type         string `json:"type"`
+	IsSearch     bool   `json:"isSearch"`
+	IsRequired   bool   `json:"isRequired"`
+	ValidateRule string `json:"validateRule"`
+	CategoryId   uint64 `json:"categoryId"`
+	CreatedAt    int64  `json:"createdAt"`
+	UpdatedAt    int64  `json:"updatedAt"`
+	DeletedAt    int64  `json:"-"`
+}
+
+// 更新成就属性
+type UpdatePropertyReq {
+	Id           uint64 `json:"id"`
+	Name         string `json:"name"`
+	Key          string `json:"key"`
+	Description  string `json:"description"`
+	Status       int32  `json:"status"`
+	Type         string `json:"type"`
+	IsSearch     bool   `json:"isSearch"`
+	IsRequired   bool   `json:"isRequired"`
+	ValidateRule string `json:"validateRule"`
+	CategoryId   uint64 `json:"categoryId"`
+}
+
+type UpdatePropertyResp {
+	Id           uint64 `json:"id"`
+	Name         string `json:"name"`
+	Key          string `json:"key"`
+	Description  string `json:"description"`
+	Status       int32  `json:"status"`
+	Type         string `json:"type"`
+	IsSearch     bool   `json:"isSearch"`
+	IsRequired   bool   `json:"isRequired"`
+	ValidateRule string `json:"validateRule"`
+	CategoryId   uint64 `json:"categoryId"`
+	CreatedAt    int64  `json:"createdAt"`
+	UpdatedAt    int64  `json:"updatedAt"`
+	DeletedAt    int64  `json:"-"`
+}
+
+// 删除成就属性
+type DeletePropertyReq {
+	Id uint64 `path:"id"`
+}
+
+type DeletePropertyResp {}
+
+// 查看成就属性详情
+type QueryPropertyDetailReq {
+	Id uint64 `path:"id"`
+}
+
+type QueryPropertyDetailResp {
+	Id           uint64 `json:"id"`
+	Name         string `json:"name"`
+	Key          string `json:"key"`
+	Description  string `json:"description"`
+	Status       int32  `json:"status"`
+	Type         string `json:"type"`
+	IsSearch     bool   `json:"isSearch"`
+	IsRequired   bool   `json:"isRequired"`
+	ValidateRule string `json:"validateRule"`
+	CategoryId   uint64 `json:"categoryId"`
+	CreatedAt    int64  `json:"createdAt"`
+	UpdatedAt    int64  `json:"updatedAt"`
+	DeletedAt    int64  `json:"-"`
+}
+
+@server (
+	group: achievement/property
+)
+service scholartrack-api {
+	@handler QueryPropertyHandler
+	get /property (QueryPropertyReq) returns (QueryPropertyResp)
+
+	@handler AddPropertyHandler
+	post /property (AddPropertyReq) returns (AddPropertyResp)
+
+	@handler UpdatePropertyHandler
+	put /property (UpdatePropertyReq) returns (UpdatePropertyResp)
+
+	@handler DeletePropertyHandler
+	delete /property/:id (DeletePropertyReq) returns (DeletePropertyResp)
+
+	@handler QueryPropertyDetailHandler
+	get /property/:id (QueryPropertyDetailReq) returns (QueryPropertyDetailResp)
+}
+
+type Menu {
+	Id        uint64 `json:"id"`
+	CreatedAt int64  `json:"createdAt"`
+	UpdatedAt int64  `json:"updatedAt"`
+	DeletedAt int64  `json:"-"`
+	MenuLevel uint   `json:"-"`
+	ParentId  uint64 `json:"parentId"` // 父菜单ID
+	Path      string `json:"path"` // 路由path
+	Name      string `json:"name"` // 路由name
+	Hidden    bool   `json:"hidden"` // 是否在列表隐藏
+	Component string `json:"component"` // 对应前端文件路径
+	Sort      int    `json:"sort"` // 排序标记
+	Meta      Meta   `json:"meta"` // 附加属性
+	Children  []Menu `json:"children"`
+}
+
+type Meta {
+	ActiveName string `json:"activeName"`
+	KeepAlive  bool   `json:"keepAlive"`
+	Title      string `json:"title"`
+	Icon       string `json:"icon"`
+	CloseTab   bool   `json:"closeTab"`
+}
+
+// 菜单
+type CreateMenuReq {
+	ParentId  uint64 `json:"parentId"`
+	Path      string `json:"path"`
+	Name      string `json:"name"`
+	Hidden    bool   `json:"hidden"`
+	Component string `json:"component"`
+	Sort      int    `json:"sort"`
+	Meta      Meta   `json:"meta"`
+}
+
+type CreateMenuResp {
+	Id uint64 `json:"id"`
+}
+
+type QueryMenuDetailReq {
+	Id uint64 `path:"id"`
+}
+
+type QueryMenuDetailResp {
+	Id        uint64 `json:"id"`
+	CreatedAt int64  `json:"createdAt"`
+	UpdatedAt int64  `json:"updatedAt"`
+	ParentId  uint64 `json:"parentId"`
+	Path      string `json:"path"`
+	Name      string `json:"name"`
+	Hidden    bool   `json:"hidden"`
+	Component string `json:"component"`
+	Sort      int    `json:"sort"`
+	Meta      Meta   `json:"meta"`
+	Children  []Menu `json:"children"`
+}
+
+type QueryAllMenuTreeReq {}
+
+type QueryAllMenuTreeResp {
+	Menus []Menu `json:"menus"`
+}
+
+type QueryRoleMenuTreeReq {
+	RoleId uint64 `json:"roleId"`
+}
+
+type QueryRoleMenuTreeResp {
+	Menus []Menu `json:"menus"`
+}
+
+type UpdateRoleMenuReq {
+	RoleId  uint64   `json:"roleId"`
+	MenuIds []uint64 `json:"menuIds"`
+}
+
+type UpdateRoleMenuResp {}
+
+type UpdateMenuReq {
+	Id        uint64 `json:"id"`
+	ParentId  uint64 `json:"parentId"`
+	Path      string `json:"path"`
+	Name      string `json:"name"`
+	Hidden    bool   `json:"hidden"`
+	Component string `json:"component"`
+	Sort      int    `json:"sort"`
+	Meta      Meta   `json:"meta"`
+}
+
+type UpdateMenuResp {
+	Id        uint64 `json:"id"`
+	CreatedAt int64  `json:"createdAt"`
+	UpdatedAt int64  `json:"updatedAt"`
+	DeletedAt int64  `json:"-"`
+	ParentId  uint64 `json:"parentId"`
+	Path      string `json:"path"`
+	Name      string `json:"name"`
+	Hidden    bool   `json:"hidden"`
+	Component string `json:"component"`
+	Sort      int    `json:"sort"`
+	Meta      Meta   `json:"meta"`
+}
+
+type DeleteMenuReq {
+	Id uint64 `path:"id"`
+}
+
+type DeleteMenuResp {}
+
+@server (
+	group: menu
+)
+service scholartrack-api {
+	@handler CreateMenuHandler
+	post /menu (CreateMenuReq) returns (CreateMenuResp)
+
+	@handler QueryMenuDetailHandler
+	get /menu/:id (QueryMenuDetailReq) returns (QueryMenuDetailResp)
+
+	@handler QueryAllMenuTreeHandler
+	get /menu/all (QueryAllMenuTreeReq) returns (QueryAllMenuTreeResp)
+
+	@handler QueryRoleMenuTreeHandler
+	get /menu/role/:roleId (QueryRoleMenuTreeReq) returns (QueryRoleMenuTreeResp)
+
+	@handler UpdateRoleMenuHandler
+	post /menu/role (UpdateRoleMenuReq) returns (UpdateRoleMenuResp)
+
+	@handler UpdateMenuHandler
+	put /menu (UpdateMenuReq) returns (UpdateMenuResp)
+
+	@handler DeleteMenuHandler
+	delete /menu/:id (DeleteMenuReq) returns (DeleteMenuResp)
+}
+
+type File {
+	Id         uint64 `json:"id"`
+	FileKey    string `json:"fileKey"`
+	FileUrl    string `json:"fileUrl"`
+	FileName   string `json:"fileName"`
+	FileSize   int64  `json:"fileSize"`
+	FileType   string `json:"fileType"`
+	BusinessId uint64 `json:"bussinessId"`
+	CreatedAt  int64  `json:"createdAt"`
+	UpdatedAt  int64  `json:"updatedAt"`
+	DeletedAt  int64  `json:"-"`
+}
+
+type DeleteFileReq {
+	Id uint64 `path:"id"`
+}
+
+type DeleteFileResp {}
+
+type GetFileUrlReq {
+	FileKey string `json:"fileKey"`
+}
+
+type GetFileUrlResp {
+	Url string `json:"url"`
+}
+
+type UploadFileReq {
+	File          []byte `json:"file"`
+	FileName      string `json:"fileName"`
+	FileType      string `json:"fileType"`
+	BusinessId    uint64 `json:"bussinessId"`
+	BussinessName string `json:"bussinessName"`
+}
+
+type UploadFileResp {
+	FileId uint64 `json:"fileId"`
+}
+
+type DownloadFileReq {
+	Id uint64 `path:"id"`
+}
+
+type DownloadFileResp {
+	FileData []byte `json:"fileData"`
+	FileName string `json:"fileName"`
+	FileType string `json:"fileType"`
+	FileSize int64  `json:"fileSize"`
+}
+
+type QueryFileDetailReq {
+	Id uint64 `path:"id"`
+}
+
+type QueryFileDetailResp {
+	File File `json:"file"`
+}
+
+type GetBussinessFilesReq {
+	BusinessId    uint64 `json:"bussinessId"`
+	BussinessName string `json:"bussinessName"`
+}
+
+type GetBussinessFilesResp {
+	Files []*File `json:"files"`
+}
+
+@server (
+	group: file
+)
+service scholartrack-api {
+	@handler UploadFileHandler
+	post /file/upload (UploadFileReq) returns (UploadFileResp)
+
+	@handler DeleteFileHandler
+	delete /file/:id (DeleteFileReq) returns (DeleteFileResp)
+
+	@handler GetFileUrlHandler
+	get /file/url (GetFileUrlReq) returns (GetFileUrlResp)
+
+	@handler DownloadFileHandler
+	get /file/download/:id (DownloadFileReq) returns (DownloadFileResp)
+
+	@handler QueryFileDetailHandler
+	get /file/:id (QueryFileDetailReq) returns (QueryFileDetailResp)
+
+	@handler GetBussinessFilesHandler
+	get /file/bussiness (GetBussinessFilesReq) returns (GetBussinessFilesResp)
+}
+
+// 字典
+type (
+	Dictionary {
+		Id                uint64              `json:"id"`
+		CreatedAt         int64               `json:"createdAt"`
+		UpdatedAt         int64               `json:"updatedAt"`
+		DeletedAt         int64               `json:"-"`
+		Name              string              `json:"name"`
+		Type              string              `json:"type"`
+		Status            bool                `json:"status"`
+		Desc              string              `json:"desc"`
+		DictionaryDetails []*DictionaryDetail `json:"dictionaryDetails"`
+	}
+	CreateDictionaryReq {
+		Name   string `json:"name"`
+		Type   string `json:"type"`
+		Status bool   `json:"status"`
+		Desc   string `json:"desc"`
+	}
+	CreateDictionaryResp {
+		Id        uint64 `json:"id"`
+		CreatedAt int64  `json:"createdAt"`
+		UpdatedAt int64  `json:"updatedAt"`
+		DeletedAt int64  `json:"-"`
+		Name      string `json:"name"`
+		Type      string `json:"type"`
+		Status    bool   `json:"status"`
+		Desc      string `json:"desc"`
+	}
+	UpdateDictionaryReq {
+		Id     uint64 `json:"id"`
+		Name   string `json:"name"`
+		Type   string `json:"type"`
+		Status bool   `json:"status"`
+		Desc   string `json:"desc"`
+	}
+	UpdateDictionaryResp {
+		Id uint64 `json:"id"`
+	}
+	DeleteDictionaryReq {
+		Id uint64 `path:"id"`
+	}
+	DeleteDictionaryResp {
+		Id uint64 `json:"id"`
+	}
+	QueryDictionaryDetailReq {
+		Id uint64 `path:"id"`
+	}
+	QueryDictionaryDetailResp {
+		Id        uint64 `json:"id"`
+		CreatedAt int64  `json:"createdAt"`
+		UpdatedAt int64  `json:"updatedAt"`
+		DeletedAt int64  `json:"-"`
+		Name      string `json:"name"`
+		Type      string `json:"type"`
+		Status    bool   `json:"status"`
+		Desc      string `json:"desc"`
+	}
+	QueryDictionaryListReq {
+		Page     int64  `json:"page"`
+		PageSize int64  `json:"pageSize"`
+		Name     string `json:"name,optional"`
+		Type     string `json:"type,optional"`
+		OrderBy  string `json:"orderBy,optional"`
+	}
+	QueryDictionaryListResp {
+		Total    int64         `json:"total"`
+		List     []*Dictionary `json:"list"`
+		Page     int64         `json:"page"`
+		PageSize int64         `json:"pageSize"`
+	}
+)
+
+// 字典详情
+type (
+	DictionaryDetail {
+		Id             uint64 `json:"id"`
+		CreatedAt      int64  `json:"createdAt"`
+		UpdatedAt      int64  `json:"updatedAt"`
+		DeletedAt      int64  `json:"-"`
+		DictionaryId   uint64 `json:"dictionaryId"`
+		Key            string `json:"key"`
+		Value          string `json:"value"`
+		Sort           int32  `json:"sort"`
+		IsDefaultValue bool   `json:"isDefaultValue"`
+	}
+	CreateDictionaryDetailReq {
+		DictionaryId   uint64 `json:"dictionaryId"`
+		Key            string `json:"key"`
+		Value          string `json:"value"`
+		Sort           int32  `json:"sort"`
+		IsDefaultValue bool   `json:"isDefaultValue"`
+	}
+	CreateDictionaryDetailResp {
+		Id             uint64 `json:"id"`
+		CreatedAt      int64  `json:"createdAt"`
+		UpdatedAt      int64  `json:"updatedAt"`
+		DeletedAt      int64  `json:"-"`
+		DictionaryId   uint64 `json:"dictionaryId"`
+		Key            string `json:"key"`
+		Value          string `json:"value"`
+		Sort           int32  `json:"sort"`
+		IsDefaultValue bool   `json:"isDefaultValue"`
+	}
+	UpdateDictionaryDetailReq {
+		Id             uint64 `json:"id"`
+		DictionaryId   uint64 `json:"dictionaryId"`
+		Key            string `json:"key"`
+		Value          string `json:"value"`
+		Sort           int32  `json:"sort"`
+		IsDefaultValue bool   `json:"isDefaultValue"`
+	}
+	UpdateDictionaryDetailResp {
+		Id uint64 `json:"id"`
+	}
+	DeleteDictionaryDetailReq {
+		Id uint64 `path:"id"`
+	}
+	DeleteDictionaryDetailResp {
+		Id uint64 `json:"id"`
+	}
+)
+
+@server (
+	group: dictionary
+)
+service scholartrack-api {
+	@handler CreateDictionaryHandler
+	post /dictionary (CreateDictionaryReq) returns (CreateDictionaryResp)
+
+	@handler UpdateDictionaryHandler
+	put /dictionary (UpdateDictionaryReq) returns (UpdateDictionaryResp)
+
+	@handler DeleteDictionaryHandler
+	delete /dictionary/:id (DeleteDictionaryReq) returns (DeleteDictionaryResp)
+
+	@handler QueryDictionaryDetailHandler
+	get /dictionary/:id (QueryDictionaryDetailReq) returns (QueryDictionaryDetailResp)
+
+	@handler QueryDictionaryListHandler
+	post /dictionary/list (QueryDictionaryListReq) returns (QueryDictionaryListResp)
+}
+
+@server (
+	group: dictionary_detail
+)
+service scholartrack-api {
+	@handler CreateDictionaryDetailHandler
+	post /dictionary/detail (CreateDictionaryDetailReq) returns (CreateDictionaryDetailResp)
+
+	@handler UpdateDictionaryDetailHandler
+	put /dictionary/detail (UpdateDictionaryDetailReq) returns (UpdateDictionaryDetailResp)
+
+	@handler DeleteDictionaryDetailHandler
+	delete /dictionary/detail/:id (DeleteDictionaryDetailReq) returns (DeleteDictionaryDetailResp)
+}
+
+type (
+	UploadAchievementReq {
+		Code        string                 `form:"code"`
+		Name        string                 `form:"name"`
+		Status      int32                  `form:"status,optional"`
+		Level       int32                  `form:"level"`
+		Rank        int32                  `form:"rank"`
+		AwardTime   int64                  `form:"awardTime"`
+		Share       bool                   `form:"share"`
+		Star        uint64                 `form:"star,optional"`
+		Uploader    uint64                 `form:"uploader"`
+		Team        bool                   `form:"team"`
+		TeamMembers []uint64               `form:"teamMembers"`
+		Description string                 `form:"description"`
+		CategoryId  uint64                 `form:"categoryId"`
+		OtherInfo   map[string]interface{} `form:"otherInfo"`
+	}
+	UploadAchievementResp {
+		Id uint64 `json:"id"`
+	}
+	DeleteAchievementReq {
+		Id uint64 `path:"id"`
+	}
+	DeleteAchievementResp  {}
+)
+
+@server (
+	group: achievement/basic
+)
+service scholartrack-api {
+	@handler UploadAchievementHandler
+	post /achievement (UploadAchievementReq) returns (UploadAchievementResp)
+}
+

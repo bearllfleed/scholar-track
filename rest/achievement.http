@@ -1,0 +1,73 @@
+@split = ----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+
+### 
+POST {{host}}/achievement
+Content-Type: multipart/form-data; boundary={{split}}
+Authorization: {{token}}
+
+--{{split}}
+Content-Disposition: form-data; name="code"
+
+nnnnnn23
+--{{split}}
+Content-Disposition: form-data; name="name"
+
+第一次成果信息
+--{{split}}
+Content-Disposition: form-data; name="status"
+
+1
+--{{split}}
+Content-Disposition: form-data; name="level"
+
+1
+--{{split}}
+Content-Disposition: form-data; name="rank"
+
+1
+--{{split}}
+Content-Disposition: form-data; name="awardTime"
+
+123236464
+--{{split}}
+Content-Disposition: form-data; name="share"
+
+false
+--{{split}}
+Content-Disposition: form-data; name="star"
+
+0
+--{{split}}
+Content-Disposition: form-data; name="uploader"
+
+1
+--{{split}}
+Content-Disposition: form-data; name="team"
+
+true
+--{{split}}
+Content-Disposition: form-data; name="teamMembers"
+
+1,2,3,4
+--{{split}}
+Content-Disposition: form-data; name="description"
+
+a simple description
+--{{split}}
+Content-Disposition: form-data; name="categoryId"
+
+1
+--{{split}}
+Content-Disposition: form-data; name="otherInfo"
+
+{
+    "a": "a",
+    "b": "b"
+}
+--{{split}}
+Content-Disposition: form-data; name="materials"; filename="需求说明书.md"
+Content-Type: application/octet-stream
+
+< ../a.txt
+--{{split}}--

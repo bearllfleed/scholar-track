@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package storage;
+option go_package = "./storage";
+
+message FileUploadRequest {
+  bytes file_data = 1;       // 文件数据
+  string file_name = 2;      // 文件名
+  string file_type = 3;      // 文件MIME类型
+  uint64 bussiness_id = 4;   // 业务ID
+  string bussiness_name = 5; // 业务名称
+}
+
+message FileUploadResponse {
+  string file_url = 1; // 文件URL
+  uint64 file_id = 2;  // 文件ID
+}
+
+message FileDownloadRequest {
+  uint64 file_id = 1; // 文件ID
+}
+
+message FileDownloadResponse {
+  bytes file_data = 1;  // 文件数据
+  string file_name = 2; // 文件名
+  string file_type = 3; // 文件MIME类型
+  uint64 file_size = 4; // 文件大小
+}
+
+message FileDeleteRequest {
+  uint64 file_id = 1; // 文件ID
+}
+
+message FileDeleteResponse {}
+
+message FileInfoRequest {
+  uint64 file_id = 1; // 文件ID
+}
+
+message FileInfoResponse {
+  uint64 file_id = 1;      // 文件ID
+  string file_key = 2;     // 文件key
+  string file_url = 3;     // 文件URL
+  string file_name = 4;    // 文件名
+  string file_type = 5;    // 文件MIME类型
+  uint64 file_size = 6;    // 文件大小
+  uint64 bussiness_id = 7; // 业务ID
+  int64 created_at = 8;    // 创建时间
+  int64 updated_at = 9;    // 更新时间
+  int64 deleted_at = 10;   // 删除时间
+}
+
+message GetBussinessFilesRequest {
+  uint64 bussiness_id = 1;   // 业务ID
+  string bussiness_name = 2; // 业务名称
+}
+
+message GetBussinessFilesResponse {
+  repeated FileInfoResponse files = 1; // 文件列表
+}
+
+message DeleteBusinessFilesRequest {
+  uint64 bussness_id = 1;
+  string business_name = 2;
+}
+
+service Storage {
+  rpc FileUpload(FileUploadRequest) returns (FileUploadResponse);
+  rpc FileDownload(FileDownloadRequest) returns (FileDownloadResponse);
+  rpc FileDelete(FileDeleteRequest) returns (FileDeleteResponse);
+  rpc FileInfo(FileInfoRequest) returns (FileInfoResponse);
+  rpc GetBussinessFiles(GetBussinessFilesRequest)
+      returns (GetBussinessFilesResponse);
+  rpc DeleteBusinessFiles(DeleteBusinessFilesRequest)
+      returns (FileDeleteResponse);
+}
