@@ -1,6 +1,6 @@
 package model
 
-import "github.com/bearllflee/scholar-track/rpc/system/internal/global"
+import "github.com/bearllfleed/scholar-track/rpc/system/internal/global"
 
 type Api struct {
 	global.StModel

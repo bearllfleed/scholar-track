@@ -3,9 +3,9 @@ package property
 import (
 	"net/http"
 
-	"github.com/bearllflee/scholar-track/api/internal/logic/achievement/property"
-	"github.com/bearllflee/scholar-track/api/internal/svc"
-	"github.com/bearllflee/scholar-track/api/internal/types"
+	"github.com/bearllfleed/scholar-track/api/internal/logic/achievement/property"
+	"github.com/bearllfleed/scholar-track/api/internal/svc"
+	"github.com/bearllfleed/scholar-track/api/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

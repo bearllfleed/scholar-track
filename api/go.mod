@@ -1,22 +1,22 @@
-module github.com/bearllflee/scholar-track/api
+module github.com/bearllfleed/scholar-track/api
 
 go 1.24.2
 
-replace github.com/bearllflee/scholar-track/pkg => ../pkg
+replace github.com/bearllfleed/scholar-track/pkg => ../pkg
 
-replace github.com/bearllflee/scholar-track/api => ../api
+replace github.com/bearllfleed/scholar-track/api => ../api
 
-replace github.com/bearllflee/scholar-track/rpc/system => ../rpc/system
+replace github.com/bearllfleed/scholar-track/rpc/system => ../rpc/system
 
-replace github.com/bearllflee/scholar-track/rpc/storage => ../rpc/storage
+replace github.com/bearllfleed/scholar-track/rpc/storage => ../rpc/storage
 
-replace github.com/bearllflee/scholar-track/rpc/achieve => ../rpc/achieve
+replace github.com/bearllfleed/scholar-track/rpc/achieve => ../rpc/achieve
 
 require (
-	github.com/bearllflee/scholar-track/pkg v0.0.0-00010101000000-000000000000
-	github.com/bearllflee/scholar-track/rpc/achieve v0.0.0-00010101000000-000000000000
-	github.com/bearllflee/scholar-track/rpc/storage v0.0.0-20250221091123-cad9b5f53bd0
-	github.com/bearllflee/scholar-track/rpc/system v0.0.0-00010101000000-000000000000
+	github.com/bearllfleed/scholar-track/pkg v0.0.0-00010101000000-000000000000
+	github.com/bearllfleed/scholar-track/rpc/achieve v0.0.0-00010101000000-000000000000
+	github.com/bearllfleed/scholar-track/rpc/storage v0.0.0-20250221091123-cad9b5f53bd0
+	github.com/bearllfleed/scholar-track/rpc/system v0.0.0-00010101000000-000000000000
 	github.com/golang-jwt/jwt/v4 v4.5.1
 	github.com/zeromicro/go-zero v1.7.6
 	golang.org/x/crypto v0.31.0

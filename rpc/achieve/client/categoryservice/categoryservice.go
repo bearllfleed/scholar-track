@@ -7,7 +7,7 @@ package categoryservice
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/achieve/achieve"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/achieve"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

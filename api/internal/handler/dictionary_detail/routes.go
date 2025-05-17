@@ -3,7 +3,7 @@ package dictionary_detail
 import (
 	"net/http"
 
-	"github.com/bearllflee/scholar-track/api/internal/svc"
+	"github.com/bearllfleed/scholar-track/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )

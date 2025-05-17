@@ -1,11 +1,11 @@
 package middleware
 
 import (
-	"github.com/bearllflee/scholar-track/pkg/response"
+	"github.com/bearllfleed/scholar-track/pkg/response"
 	"net/http"
 	"strconv"
 
-	"github.com/bearllflee/scholar-track/api/internal/utils"
+	"github.com/bearllfleed/scholar-track/api/internal/utils"
 )
 
 type CasbinRpcService interface {

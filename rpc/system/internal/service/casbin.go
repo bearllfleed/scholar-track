@@ -4,9 +4,9 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/bearllflee/scholar-track/pkg/cerror"
-	"github.com/bearllflee/scholar-track/rpc/system/client/role"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/global"
+	"github.com/bearllfleed/scholar-track/pkg/cerror"
+	"github.com/bearllfleed/scholar-track/rpc/system/client/role"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/global"
 	"github.com/casbin/casbin/v2"
 	"github.com/casbin/casbin/v2/model"
 	gormadapter "github.com/casbin/gorm-adapter/v3"

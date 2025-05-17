@@ -1,7 +1,7 @@
 package initialize
 
 import (
-	storage "github.com/bearllflee/scholar-track/rpc/storage/storage_client"
+	storage "github.com/bearllfleed/scholar-track/rpc/storage/storage_client"
 	"github.com/zeromicro/go-zero/core/discov"
 	"github.com/zeromicro/go-zero/zrpc"
 )

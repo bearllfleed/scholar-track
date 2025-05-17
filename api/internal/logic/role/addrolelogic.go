@@ -3,10 +3,10 @@ package role
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/system/client/role"
+	"github.com/bearllfleed/scholar-track/rpc/system/client/role"
 
-	"github.com/bearllflee/scholar-track/api/internal/svc"
-	"github.com/bearllflee/scholar-track/api/internal/types"
+	"github.com/bearllfleed/scholar-track/api/internal/svc"
+	"github.com/bearllfleed/scholar-track/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

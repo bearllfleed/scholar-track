@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/config"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/config"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 )

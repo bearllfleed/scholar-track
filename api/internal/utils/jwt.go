@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/bearllflee/scholar-track/api/internal/types"
+	"github.com/bearllfleed/scholar-track/api/internal/types"
 	"github.com/golang-jwt/jwt/v4"
 )
 

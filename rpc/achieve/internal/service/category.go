@@ -4,9 +4,9 @@ import (
 	"context"
 	"errors"
 
-	"github.com/bearllflee/scholar-track/pkg/cerror"
-	"github.com/bearllflee/scholar-track/rpc/achieve/achieve"
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/model"
+	"github.com/bearllfleed/scholar-track/pkg/cerror"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/achieve"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/model"
 	"gorm.io/gorm"
 )
 

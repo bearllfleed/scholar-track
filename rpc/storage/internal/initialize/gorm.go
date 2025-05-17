@@ -1,7 +1,7 @@
 package initialize
 
 import (
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/model"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

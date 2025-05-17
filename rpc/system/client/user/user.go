@@ -7,7 +7,7 @@ package user
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/system/system"
+	"github.com/bearllfleed/scholar-track/rpc/system/system"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/model"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/model"
 	"gorm.io/gorm"
 )
 

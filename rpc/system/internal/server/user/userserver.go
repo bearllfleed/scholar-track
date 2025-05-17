@@ -7,9 +7,9 @@ package server
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/system/internal/logic/user"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/svc"
-	"github.com/bearllflee/scholar-track/rpc/system/system"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/logic/user"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/svc"
+	"github.com/bearllfleed/scholar-track/rpc/system/system"
 )
 
 type UserServer struct {

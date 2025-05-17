@@ -3,12 +3,12 @@ package api
 import (
 	"net/http"
 
-	"github.com/bearllflee/scholar-track/api/internal/logic/api"
-	"github.com/bearllflee/scholar-track/api/internal/svc"
-	"github.com/bearllflee/scholar-track/api/internal/types"
+	"github.com/bearllfleed/scholar-track/api/internal/logic/api"
+	"github.com/bearllfleed/scholar-track/api/internal/svc"
+	"github.com/bearllfleed/scholar-track/api/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/bearllflee/scholar-track/pkg/response"
+	"github.com/bearllfleed/scholar-track/pkg/response"
 	"google.golang.org/grpc/status"
 )
 

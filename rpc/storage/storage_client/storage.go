@@ -7,7 +7,7 @@ package storage_client
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/storage/storage"
+	"github.com/bearllfleed/scholar-track/rpc/storage/storage"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

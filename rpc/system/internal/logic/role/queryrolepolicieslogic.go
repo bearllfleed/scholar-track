@@ -2,11 +2,11 @@ package rolelogic
 
 import (
 	"context"
-	"github.com/bearllflee/scholar-track/pkg/cerror"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/global"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/model"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/svc"
-	"github.com/bearllflee/scholar-track/rpc/system/system"
+	"github.com/bearllfleed/scholar-track/pkg/cerror"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/global"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/model"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/svc"
+	"github.com/bearllfleed/scholar-track/rpc/system/system"
 	gormadapter "github.com/casbin/gorm-adapter/v3"
 
 	"github.com/zeromicro/go-zero/core/logx"

@@ -3,10 +3,10 @@ package basic
 import (
 	"net/http"
 
-	"github.com/bearllflee/scholar-track/api/internal/logic/achievement/basic"
-	"github.com/bearllflee/scholar-track/api/internal/svc"
-	"github.com/bearllflee/scholar-track/api/internal/types"
-	"github.com/bearllflee/scholar-track/pkg/response"
+	"github.com/bearllfleed/scholar-track/api/internal/logic/achievement/basic"
+	"github.com/bearllfleed/scholar-track/api/internal/svc"
+	"github.com/bearllfleed/scholar-track/api/internal/types"
+	"github.com/bearllfleed/scholar-track/pkg/response"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

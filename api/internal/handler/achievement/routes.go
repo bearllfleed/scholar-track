@@ -3,10 +3,10 @@ package achievement
 import (
 	"net/http"
 
-	achievementbasic "github.com/bearllflee/scholar-track/api/internal/handler/achievement/basic"
-	achievementcategory "github.com/bearllflee/scholar-track/api/internal/handler/achievement/category"
-	achievementproperty "github.com/bearllflee/scholar-track/api/internal/handler/achievement/property"
-	"github.com/bearllflee/scholar-track/api/internal/svc"
+	achievementbasic "github.com/bearllfleed/scholar-track/api/internal/handler/achievement/basic"
+	achievementcategory "github.com/bearllfleed/scholar-track/api/internal/handler/achievement/category"
+	achievementproperty "github.com/bearllfleed/scholar-track/api/internal/handler/achievement/property"
+	"github.com/bearllfleed/scholar-track/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )

@@ -3,7 +3,7 @@ package model
 import (
 	"time"
 
-	"github.com/bearllflee/scholar-track/pkg/global"
+	"github.com/bearllfleed/scholar-track/pkg/global"
 )
 
 type FailedDeletion struct {

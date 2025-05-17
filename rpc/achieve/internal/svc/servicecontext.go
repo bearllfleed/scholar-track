@@ -1,10 +1,10 @@
 package svc
 
 import (
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/config"
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/initialize"
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/service"
-	"github.com/bearllflee/scholar-track/rpc/storage/storage_client"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/config"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/initialize"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/service"
+	"github.com/bearllfleed/scholar-track/rpc/storage/storage_client"
 )
 
 type ServiceContext struct {

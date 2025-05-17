@@ -1,6 +1,6 @@
 package initialize
 
-import "github.com/bearllflee/scholar-track/rpc/system/internal/service"
+import "github.com/bearllfleed/scholar-track/rpc/system/internal/service"
 
 var casbinService = service.CasbinServiceApp
 

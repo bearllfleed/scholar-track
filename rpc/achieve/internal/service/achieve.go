@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/pkg/cerror"
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/global"
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/model"
+	"github.com/bearllfleed/scholar-track/pkg/cerror"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/global"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/model"
 	"gorm.io/gorm"
 )
 

@@ -6,12 +6,12 @@ import (
 	"io"
 	"mime/multipart"
 
-	"github.com/bearllflee/scholar-track/rpc/achieve/achieve"
-	"github.com/bearllflee/scholar-track/rpc/storage/storage_client" // Assuming storage client path
+	"github.com/bearllfleed/scholar-track/rpc/achieve/achieve"
+	"github.com/bearllfleed/scholar-track/rpc/storage/storage_client" // Assuming storage client path
 	"google.golang.org/protobuf/types/known/structpb"
 
-	"github.com/bearllflee/scholar-track/api/internal/svc"
-	"github.com/bearllflee/scholar-track/api/internal/types"
+	"github.com/bearllfleed/scholar-track/api/internal/svc"
+	"github.com/bearllfleed/scholar-track/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

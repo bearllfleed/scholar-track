@@ -1,6 +1,6 @@
 package model
 
-import "github.com/bearllflee/scholar-track/pkg/global"
+import "github.com/bearllfleed/scholar-track/pkg/global"
 
 type Property struct {
 	global.StModel

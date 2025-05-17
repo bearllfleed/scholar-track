@@ -1,14 +1,14 @@
-module github.com/bearllflee/scholar-track/rpc/system
+module github.com/bearllfleed/scholar-track/rpc/system
 
 go 1.22.6
 
 // 添加以下 replace 指令
-replace github.com/bearllflee/scholar-track/pkg => ../../pkg
+replace github.com/bearllfleed/scholar-track/pkg => ../../pkg
 
-replace github.com/bearllflee/scholar-track/api => ../../api
+replace github.com/bearllfleed/scholar-track/api => ../../api
 
 require (
-	github.com/bearllflee/scholar-track/pkg v0.0.0-00010101000000-000000000000
+	github.com/bearllfleed/scholar-track/pkg v0.0.0-00010101000000-000000000000
 	github.com/casbin/casbin/v2 v2.103.0
 	github.com/casbin/gorm-adapter/v3 v3.32.0
 	github.com/zeromicro/go-zero v1.7.6

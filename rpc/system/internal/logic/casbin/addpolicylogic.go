@@ -3,8 +3,8 @@ package casbinlogic
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/system/internal/svc"
-	"github.com/bearllflee/scholar-track/rpc/system/system"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/svc"
+	"github.com/bearllfleed/scholar-track/rpc/system/system"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

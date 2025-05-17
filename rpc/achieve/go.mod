@@ -1,16 +1,16 @@
-module github.com/bearllflee/scholar-track/rpc/achieve
+module github.com/bearllfleed/scholar-track/rpc/achieve
 
 go 1.24.2
 
-replace github.com/bearllflee/scholar-track/pkg => ../../pkg
+replace github.com/bearllfleed/scholar-track/pkg => ../../pkg
 
-replace github.com/bearllflee/scholar-track/api => ../../api
+replace github.com/bearllfleed/scholar-track/api => ../../api
 
-replace github.com/bearllflee/scholar-track/rpc/storage => ../storage
+replace github.com/bearllfleed/scholar-track/rpc/storage => ../storage
 
 require (
-	github.com/bearllflee/scholar-track/pkg v0.0.0-00010101000000-000000000000
-	github.com/bearllflee/scholar-track/rpc/storage v0.0.0-20250221091123-cad9b5f53bd0
+	github.com/bearllfleed/scholar-track/pkg v0.0.0-00010101000000-000000000000
+	github.com/bearllfleed/scholar-track/rpc/storage v0.0.0-20250221091123-cad9b5f53bd0
 	github.com/zeromicro/go-zero v1.7.6
 	google.golang.org/grpc v1.69.2
 	google.golang.org/protobuf v1.36.5

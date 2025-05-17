@@ -1,8 +1,8 @@
-module github.com/bearllflee/scholar-track/pkg
+module github.com/bearllfleed/scholar-track/pkg
 
 go 1.22.6
 
-replace github.com/bearllflee/scholar-track => ../
+replace github.com/bearllfleed/scholar-track => ../
 
 require (
 	github.com/zeromicro/go-zero v1.7.6

@@ -3,9 +3,9 @@ package dictionary_detail
 import (
 	"net/http"
 
-	"github.com/bearllflee/scholar-track/api/internal/logic/dictionary_detail"
-	"github.com/bearllflee/scholar-track/api/internal/svc"
-	"github.com/bearllflee/scholar-track/api/internal/types"
+	"github.com/bearllfleed/scholar-track/api/internal/logic/dictionary_detail"
+	"github.com/bearllfleed/scholar-track/api/internal/svc"
+	"github.com/bearllfleed/scholar-track/api/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

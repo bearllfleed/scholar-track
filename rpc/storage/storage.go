@@ -5,11 +5,11 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/config"
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/server"
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/svc"
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/task"
-	"github.com/bearllflee/scholar-track/rpc/storage/storage"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/config"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/server"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/svc"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/task"
+	"github.com/bearllfleed/scholar-track/rpc/storage/storage"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

@@ -3,9 +3,9 @@ package service
 import (
 	"errors"
 
-	"github.com/bearllflee/scholar-track/pkg/cerror"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/global"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/model"
+	"github.com/bearllfleed/scholar-track/pkg/cerror"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/global"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/model"
 	"gorm.io/gorm"
 )
 

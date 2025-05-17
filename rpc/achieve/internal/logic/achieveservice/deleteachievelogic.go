@@ -3,9 +3,9 @@ package achieveservicelogic
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/achieve/achieve"
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/svc"
-	"github.com/bearllflee/scholar-track/rpc/storage/storage"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/achieve"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/svc"
+	"github.com/bearllfleed/scholar-track/rpc/storage/storage"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

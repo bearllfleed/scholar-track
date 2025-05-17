@@ -5,9 +5,9 @@ import (
 	"context"
 	"io"
 
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/model"
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/svc"
-	"github.com/bearllflee/scholar-track/rpc/storage/storage"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/model"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/svc"
+	"github.com/bearllfleed/scholar-track/rpc/storage/storage"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/bearllflee/scholar-track/pkg/global"
+	"github.com/bearllfleed/scholar-track/pkg/global"
 )
 
 type File struct {

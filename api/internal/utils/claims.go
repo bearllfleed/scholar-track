@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"github.com/bearllflee/scholar-track/api/internal/config"
-	"github.com/bearllflee/scholar-track/api/internal/types"
+	"github.com/bearllfleed/scholar-track/api/internal/config"
+	"github.com/bearllfleed/scholar-track/api/internal/types"
 	"github.com/zeromicro/go-zero/core/logx"
 	"net"
 	"net/http"

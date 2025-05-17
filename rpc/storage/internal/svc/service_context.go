@@ -1,9 +1,9 @@
 package svc
 
 import (
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/config"
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/initialize"
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/service"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/config"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/initialize"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/service"
 )
 
 type ServiceContext struct {

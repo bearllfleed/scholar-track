@@ -3,11 +3,11 @@ package menu
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/system/client/menuservice"
-	"github.com/bearllflee/scholar-track/rpc/system/system"
+	"github.com/bearllfleed/scholar-track/rpc/system/client/menuservice"
+	"github.com/bearllfleed/scholar-track/rpc/system/system"
 
-	"github.com/bearllflee/scholar-track/api/internal/svc"
-	"github.com/bearllflee/scholar-track/api/internal/types"
+	"github.com/bearllfleed/scholar-track/api/internal/svc"
+	"github.com/bearllfleed/scholar-track/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

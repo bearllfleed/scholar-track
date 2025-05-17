@@ -7,9 +7,9 @@ package server
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/logic"
-	"github.com/bearllflee/scholar-track/rpc/storage/internal/svc"
-	"github.com/bearllflee/scholar-track/rpc/storage/storage"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/logic"
+	"github.com/bearllfleed/scholar-track/rpc/storage/internal/svc"
+	"github.com/bearllfleed/scholar-track/rpc/storage/storage"
 )
 
 type StorageServer struct {

@@ -3,11 +3,11 @@ package middleware
 import (
 	"context"
 	"errors"
-	"github.com/bearllflee/scholar-track/api/internal/config"
-	"github.com/bearllflee/scholar-track/pkg/response"
+	"github.com/bearllfleed/scholar-track/api/internal/config"
+	"github.com/bearllfleed/scholar-track/pkg/response"
 	"net/http"
 
-	"github.com/bearllflee/scholar-track/api/internal/utils"
+	"github.com/bearllfleed/scholar-track/api/internal/utils"
 )
 
 type JwtMiddleware struct {

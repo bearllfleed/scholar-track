@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/bearllflee/scholar-track/api/internal/config"
-	"github.com/bearllflee/scholar-track/api/internal/handler"
-	"github.com/bearllflee/scholar-track/api/internal/svc"
+	"github.com/bearllfleed/scholar-track/api/internal/config"
+	"github.com/bearllfleed/scholar-track/api/internal/handler"
+	"github.com/bearllfleed/scholar-track/api/internal/svc"
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
 )

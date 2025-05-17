@@ -3,9 +3,9 @@ package categoryservicelogic
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/achieve/achieve"
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/model"
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/svc"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/achieve"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/model"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

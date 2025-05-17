@@ -3,12 +3,12 @@ package userlogic
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/pkg/cerror"
-	"github.com/bearllflee/scholar-track/rpc/system/client/user"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/global"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/model"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/svc"
-	"github.com/bearllflee/scholar-track/rpc/system/system"
+	"github.com/bearllfleed/scholar-track/pkg/cerror"
+	"github.com/bearllfleed/scholar-track/rpc/system/client/user"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/global"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/model"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/svc"
+	"github.com/bearllfleed/scholar-track/rpc/system/system"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

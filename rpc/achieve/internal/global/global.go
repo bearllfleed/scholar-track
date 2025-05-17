@@ -1,7 +1,7 @@
 package global
 
 import (
-	"github.com/bearllflee/scholar-track/pkg/snowflake"
+	"github.com/bearllfleed/scholar-track/pkg/snowflake"
 	"gorm.io/gorm"
 )
 

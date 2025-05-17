@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/bearllflee/scholar-track/rpc/system/internal/global"
-	"github.com/bearllflee/scholar-track/rpc/system/internal/model"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/global"
+	"github.com/bearllfleed/scholar-track/rpc/system/internal/model"
 )
 
 var DictionaryServiceApp = new(DictionaryService)

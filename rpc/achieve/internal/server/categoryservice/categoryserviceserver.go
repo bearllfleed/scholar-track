@@ -7,9 +7,9 @@ package server
 import (
 	"context"
 
-	"github.com/bearllflee/scholar-track/rpc/achieve/achieve"
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/logic/categoryservice"
-	"github.com/bearllflee/scholar-track/rpc/achieve/internal/svc"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/achieve"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/logic/categoryservice"
+	"github.com/bearllfleed/scholar-track/rpc/achieve/internal/svc"
 )
 
 type CategoryServiceServer struct {
